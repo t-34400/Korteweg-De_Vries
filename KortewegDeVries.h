@@ -45,5 +45,5 @@ public:
 	int getmaxIndex() const;
 	const std::vector<double>& getWaveHeight() const;
 
-	friend std::ostream& operator<< (std::ostream& out, KortewegDeVries kdv);
+	friend std::ostream& operator<< (std::ostream& out, KortewegDeVries& kdv);
 };

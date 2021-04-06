@@ -83,7 +83,7 @@ double KortewegDeVries::getThirdOrderSpatialCentralDifference(int point) const
 int KortewegDeVries::getmaxIndex() const { return m_maxIndex; }
 const std::vector<double>& KortewegDeVries::getWaveHeight() const { return m_height; }
 
-std::ostream& operator<< (std::ostream& out, KortewegDeVries kdv)
+std::ostream& operator<< (std::ostream& out, KortewegDeVries& kdv)
 {
 	for (auto height : kdv.m_height)
 	{
