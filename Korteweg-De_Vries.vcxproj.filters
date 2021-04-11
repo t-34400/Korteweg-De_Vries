@@ -26,5 +26,16 @@
     <ClInclude Include="KortewegDeVries.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="RungeKutta.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorStorage.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VectorStorage.inl">
+      <Filter>ソース ファイル</Filter>
+    </None>
   </ItemGroup>
 </Project>

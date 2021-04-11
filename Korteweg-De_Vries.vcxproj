@@ -144,6 +144,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KortewegDeVries.h" />
+    <ClInclude Include="RungeKutta.h" />
+    <ClInclude Include="VectorStorage.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VectorStorage.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
