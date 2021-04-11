@@ -24,13 +24,14 @@ public:
 	bool operator==(const VectorStorage& p) const;
 
 	int getDimension() const;
+	const std::vector<double>& getVector() const;
 	double getSquareMagnitude() const;
 	double getMagnitude() const;
 
-	std::vector<double>::iterator begin();
-	std::vector<double>::iterator end();
-	std::vector<double>::iterator rbegin();
-	std::vector<double>::iterator rend();
+	std::vector<double>::const_iterator begin() const;
+	std::vector<double>::const_iterator end() const;
+	std::vector<double>::const_reverse_iterator rbegin() const;
+	std::vector<double>::const_reverse_iterator rend() const;
 };
 
 VectorStorage operator-(const VectorStorage& p);

@@ -31,6 +31,7 @@ VectorStorage::VectorStorage(const std::initializer_list<double>& list) : Vector
 	}
 }
 
+
 VectorStorage operator-(const VectorStorage& p)
 {
 	// the vector of the VectorStorage object which will be returned
@@ -80,7 +81,7 @@ double operator*(const VectorStorage& p1, const VectorStorage& p2)
 VectorStorage& VectorStorage::operator+=(const VectorStorage& p)
 {
 	int index{ 0 };
-	for (auto& element : p.getVector())
+	for (auto& element : p)
 	{
 		m_value[index] += element;
 		++index;
@@ -115,15 +116,17 @@ bool VectorStorage::operator==(const VectorStorage& p) const
 
 std::ostream& operator<<(std::ostream& out, const VectorStorage& p)
 {
-	for (auto element : p.getVector())
+	for (auto element : p)
 		out << element << ' ';
 	return out;
 }
 
 int VectorStorage::getDimension() const { return m_value.size(); }
-
-std::vector<double>& VectorStorage::getVector() { return m_value; }
-
+const std::vector<double>& VectorStorage::getVector() const { return m_value; }
 double VectorStorage::getSquareMagnitude() const { return (*this) * (*this); }
-
 double VectorStorage::getMagnitude() const { return std::sqrt(getSquareMagnitude()); }
+
+std::vector<double>::const_iterator VectorStorage::begin() const { return m_value.begin(); }
+std::vector<double>::const_iterator VectorStorage::end() const { return m_value.end(); }
+std::vector<double>::const_reverse_iterator VectorStorage::rbegin() const { return m_value.rbegin(); }
+std::vector<double>::const_reverse_iterator VectorStorage::rend() const { return m_value.rend(); }
