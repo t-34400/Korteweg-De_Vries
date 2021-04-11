@@ -71,7 +71,7 @@ VectorStorage KortewegDeVries::getTimeDerivatives(double time, const VectorStora
 {
 	std::size_t index{ 0 };
 	VectorStorage returnVariables(variables.getDimension());
-	for (auto& element : returnVariables.getVector())
+	for (auto& element : returnVariables)
 	{
 		element = -6 * m_height[index] * getFirstOrderSpatialCentralDifference(index) - getThirdOrderSpatialCentralDifference(index);
 	}

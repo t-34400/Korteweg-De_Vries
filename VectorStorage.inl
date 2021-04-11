@@ -130,3 +130,8 @@ std::vector<double>::const_iterator VectorStorage::begin() const { return m_valu
 std::vector<double>::const_iterator VectorStorage::end() const { return m_value.end(); }
 std::vector<double>::const_reverse_iterator VectorStorage::rbegin() const { return m_value.rbegin(); }
 std::vector<double>::const_reverse_iterator VectorStorage::rend() const { return m_value.rend(); }
+
+std::vector<double>::iterator VectorStorage::begin() { return m_value.begin(); }
+std::vector<double>::iterator VectorStorage::end() { return m_value.end(); }
+std::vector<double>::reverse_iterator VectorStorage::rbegin() { return m_value.rbegin(); }
+std::vector<double>::reverse_iterator VectorStorage::rend() { return m_value.rend(); }
