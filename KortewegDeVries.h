@@ -9,7 +9,7 @@ class KortewegDeVries
 {
 private:
 	const std::size_t m_maxIndex{};
-	// the height and the vertical velocity of the water surface
+	// the height of the water surface
 	VectorStorage m_height;
 
 	// constant

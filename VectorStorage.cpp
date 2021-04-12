@@ -1,11 +1,10 @@
-#pragma once
 #include "VectorStorage.h"
 #include <array>
 #include <cassert>
 #include <cmath>
 #include <initializer_list>
 
-VectorStorage::VectorStorage(int n) :m_value(n)
+VectorStorage::VectorStorage(std::size_t n) :m_value(n)
 {
 }
 

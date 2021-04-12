@@ -9,7 +9,7 @@ private:
 	std::vector<double> m_value{};
 
 public:
-	VectorStorage(int n = 0);
+	VectorStorage(std::size_t n = 0);
 	VectorStorage(const std::vector<double>& vector);
 	VectorStorage(const std::initializer_list<double>& list);
 
