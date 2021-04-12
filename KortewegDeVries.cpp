@@ -57,7 +57,7 @@ void KortewegDeVries::stepForward(int steps)
 			VectorStorage returnVariables(variables.getDimension());
 			for (auto& element : returnVariables)
 			{
-				element = -6 * m_height[index] * getFirstOrderSpatialCentralDifference(index) - getThirdOrderSpatialCentralDifference(index);
+				element = -6 * variables[index] * getFirstOrderSpatialCentralDifference(index, variables) - getThirdOrderSpatialCentralDifference(index, variables);
 			}
 			return returnVariables;
 		} };
@@ -71,10 +71,10 @@ void KortewegDeVries::stepForward(int steps)
 
 }
 
-double KortewegDeVries::getFirstOrderSpatialCentralDifference(int point) const { return (m_height[next(point)] - m_height[prev(point)]) * 0.5 / m_spaceInterval; }
-double KortewegDeVries::getThirdOrderSpatialCentralDifference(int point) const
+double KortewegDeVries::getFirstOrderSpatialCentralDifference(int point, const VectorStorage& variables) const { return (variables[next(point)] - variables[prev(point)]) * 0.5 / m_spaceInterval; }
+double KortewegDeVries::getThirdOrderSpatialCentralDifference(int point, const VectorStorage& variables) const
 {
-	return (m_height[next(point, 2)] - 2 * m_height[next(point)] + 2 * m_height[prev(point)] - m_height[prev(point, 2)]) * 0.5 / (m_spaceInterval * m_spaceInterval * m_spaceInterval);
+	return (variables[next(point, 2)] - 2 * variables[next(point)] + 2 * variables[prev(point)] - variables[prev(point, 2)]) * 0.5 / (m_spaceInterval * m_spaceInterval * m_spaceInterval);
 }
 
 int KortewegDeVries::getmaxIndex() const { return m_maxIndex; }

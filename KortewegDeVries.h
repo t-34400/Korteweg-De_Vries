@@ -22,17 +22,21 @@ private:
 	// initialize the wave to soliton solution of KdV equation (P.D.Lax solution) when user didn't provide the initial wave
 	void initializeWaveToSoliton();
 
-	double getFirstOrderSpatialCentralDifference(int point) const;
-	double getThirdOrderSpatialCentralDifference(int point) const;
+	double getFirstOrderSpatialCentralDifference(int point, const VectorStorage& variables) const;
+	double getThirdOrderSpatialCentralDifference(int point, const VectorStorage& variables) const;
 
-	inline int prev(int point, int n = 1) const
+	// indexing operations for calculating derivatives (free end)
+	inline std::size_t prev(std::size_t point, std::size_t n = 1) const
 	{
-		return (point - n + m_maxIndex) % m_maxIndex;
+		if (point < n)
+			return 0;
+		return point - n;
 	}
-
-	inline int next(int point, int n = 1) const
+	inline std::size_t next(std::size_t point, std::size_t n = 1) const
 	{
-		return (point + n) % m_maxIndex;
+		if (point + n > m_maxIndex)
+			return m_maxIndex;
+		return point + n;
 	}
 
 
