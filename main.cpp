@@ -1,9 +1,14 @@
 #include "KortewegDeVries.h"
+#include <cmath>
 #include <iostream>
 
 int main()
 {
-	KortewegDeVries kdv(100);
+	auto sinFucntion{ [](double x) {
+			return std::sin(x);
+		} };
+
+	KortewegDeVries kdv(100,sinFucntion);
 	for (int count{ 0 }; count < 10; ++count)
 	{
 		std::cout << kdv << '\n';
