@@ -13,23 +13,8 @@ VectorStorage::VectorStorage(const std::vector<double>& vector) :m_value(vector)
 {
 }
 
-VectorStorage::VectorStorage(const std::initializer_list<double>& list) : VectorStorage()
+VectorStorage::VectorStorage(const std::initializer_list<double>& list) : m_value{ list }
 {
-	auto iter{ list.begin() };
-	auto endIter{ list.end() };
-
-	for (auto& element : m_value)
-	{
-		if (iter != endIter)
-		{
-			element = *iter;
-			++iter;
-		}
-		else
-		{
-			element = 0.0;
-		}
-	}
 }
 
 
