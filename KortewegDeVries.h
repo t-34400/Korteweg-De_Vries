@@ -44,7 +44,6 @@ public:
 
 	int getmaxIndex() const;
 	const VectorStorage& getHeight() const;
-	VectorStorage getTimeDerivatives(double time, const VectorStorage& height) const;
 	
 	friend std::ostream& operator<< (std::ostream& out, KortewegDeVries& kdv);
 };

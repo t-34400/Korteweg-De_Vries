@@ -23,7 +23,7 @@ KortewegDeVries::KortewegDeVries(std::size_t maxIndex, const std::function<doubl
 void KortewegDeVries::initializeWave(const std::function<double(double)> initialWave)
 {
 	double spaceCoordinate{ 0.0 };
-	for (int point{ 0 };point<m_maxIndex;++point)
+	for (std::size_t point{ 0 };point<m_maxIndex;++point)
 	{
 		// set the initial wave height
 		m_height[point] = initialWave(spaceCoordinate);
@@ -51,11 +51,21 @@ void KortewegDeVries::initializeWaveToSoliton()
 
 void KortewegDeVries::stepForward(int steps)
 {
+	static std::function<VectorStorage(double, const VectorStorage&)> s_getTimeDerivatives{ [this](double time, const VectorStorage& variables)
+		{
+			std::size_t index{ 0 };
+			VectorStorage returnVariables(variables.getDimension());
+			for (auto& element : returnVariables)
+			{
+				element = -6 * m_height[index] * getFirstOrderSpatialCentralDifference(index) - getThirdOrderSpatialCentralDifference(index);
+			}
+			return returnVariables;
+		} };
 	for (int step{ 0 }; step < steps; ++step)
 	{
-		for (int point{ 0 }; point < m_maxIndex; ++point)
+		for (std::size_t point{ 0 }; point < m_maxIndex; ++point)
 		{
-			m_height = RungeKutta::RK4(0.0, m_height, getTimeDerivatives, m_timeInterval);
+			m_height = RungeKutta::RK4(0.0, m_height, s_getTimeDerivatives, m_timeInterval);
 		}
 	}
 
@@ -67,23 +77,12 @@ double KortewegDeVries::getThirdOrderSpatialCentralDifference(int point) const
 	return (m_height[next(point, 2)] - 2 * m_height[next(point)] + 2 * m_height[prev(point)] - m_height[prev(point, 2)]) * 0.5 / (m_spaceInterval * m_spaceInterval * m_spaceInterval);
 }
 
-VectorStorage KortewegDeVries::getTimeDerivatives(double time, const VectorStorage& variables) const
-{
-	std::size_t index{ 0 };
-	VectorStorage returnVariables(variables.getDimension());
-	for (auto& element : returnVariables)
-	{
-		element = -6 * m_height[index] * getFirstOrderSpatialCentralDifference(index) - getThirdOrderSpatialCentralDifference(index);
-	}
-	return returnVariables;
-}
-
 int KortewegDeVries::getmaxIndex() const { return m_maxIndex; }
 const VectorStorage& KortewegDeVries::getHeight() const { return m_height; }
 
 std::ostream& operator<< (std::ostream& out, KortewegDeVries& kdv)
 {
-	for (auto height : kdv.m_height.getVector())
+	for (auto height : kdv.m_height)
 	{
 		out << height << ' ';
 	}

@@ -23,7 +23,7 @@ public:
 	const double& operator[](int index) const;
 	bool operator==(const VectorStorage& p) const;
 
-	int getDimension() const;
+	std::size_t getDimension() const;
 	const std::vector<double>& getVector() const;
 	double getSquareMagnitude() const;
 	double getMagnitude() const;
@@ -47,5 +47,3 @@ VectorStorage operator*(const VectorStorage& p, double d);
 VectorStorage operator*(double d, const VectorStorage& p);
 double operator*(const VectorStorage& p1, const VectorStorage& p2);
 std::ostream& operator<<(std::ostream& out, const VectorStorage& p);
-
-#include "VectorStorage.inl"

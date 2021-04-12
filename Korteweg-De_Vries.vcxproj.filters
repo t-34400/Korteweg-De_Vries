@@ -34,7 +34,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="VectorStorage.inl">
+    <None Include="VectorStorage.cpp">
       <Filter>ソース ファイル</Filter>
     </None>
   </ItemGroup>

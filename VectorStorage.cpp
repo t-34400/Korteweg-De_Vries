@@ -1,10 +1,11 @@
 #pragma once
+#include "VectorStorage.h"
 #include <array>
 #include <cassert>
 #include <cmath>
 #include <initializer_list>
 
-VectorStorage::VectorStorage(int n = 0) :m_value(n)
+VectorStorage::VectorStorage(int n) :m_value(n)
 {
 }
 
@@ -68,7 +69,7 @@ VectorStorage operator*(double d, const VectorStorage& p) { return p * d; }
 
 double operator*(const VectorStorage& p1, const VectorStorage& p2)
 {
-	const int maxIndex{ p1.getDimension() };
+	const std::size_t maxIndex{ p1.getDimension() };
 	double returnValue{ 0.0 };
 	for (std::size_t index{ 0 }; index < maxIndex; ++index)
 	{
@@ -121,7 +122,7 @@ std::ostream& operator<<(std::ostream& out, const VectorStorage& p)
 	return out;
 }
 
-int VectorStorage::getDimension() const { return m_value.size(); }
+std::size_t VectorStorage::getDimension() const { return m_value.size(); }
 const std::vector<double>& VectorStorage::getVector() const { return m_value; }
 double VectorStorage::getSquareMagnitude() const { return (*this) * (*this); }
 double VectorStorage::getMagnitude() const { return std::sqrt(getSquareMagnitude()); }
