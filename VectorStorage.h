@@ -1,7 +1,4 @@
 #pragma once
-// the storage class for Runge Kutta method
-// class T must be used operator+(V) and operator*(double)
-#pragma once
 #include <initializer_list>
 #include <iostream>
 #include <vector>
