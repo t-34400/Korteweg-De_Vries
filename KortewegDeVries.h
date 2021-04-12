@@ -25,7 +25,7 @@ private:
 	double getFirstOrderSpatialCentralDifference(int point, const VectorStorage& variables) const;
 	double getThirdOrderSpatialCentralDifference(int point, const VectorStorage& variables) const;
 
-	// indexing operations for calculating derivatives (free end)
+	// indexing operations for the calculation of time derivatives (free end boundary condition)
 	inline std::size_t prev(std::size_t point, std::size_t n = 1) const
 	{
 		if (point < n)
@@ -34,8 +34,8 @@ private:
 	}
 	inline std::size_t next(std::size_t point, std::size_t n = 1) const
 	{
-		if (point + n > m_maxIndex)
-			return m_maxIndex;
+		if (point + n > m_maxIndex-1)
+			return m_maxIndex-1;
 		return point + n;
 	}
 
