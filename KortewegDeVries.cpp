@@ -71,10 +71,17 @@ void KortewegDeVries::stepForward(int steps)
 
 }
 
-double KortewegDeVries::getFirstOrderSpatialCentralDifference(int point, const VectorStorage& variables) const { return (variables[next(point)] - variables[prev(point)]) * 0.5 / m_spaceInterval; }
+double KortewegDeVries::getFirstOrderSpatialCentralDifference(int point, const VectorStorage& variables) const
+{
+	static double fraction{ 1.0 / 12.0 };
+	return (-variables[next(point, 2)] + 8.0 * variables[next(point)] - 8.0 * variables[prev(point)] + variables[prev(point, 2)]) * fraction / m_spaceInterval;
+}
 double KortewegDeVries::getThirdOrderSpatialCentralDifference(int point, const VectorStorage& variables) const
 {
-	return (variables[next(point, 2)] - 2 * variables[next(point)] + 2 * variables[prev(point)] - variables[prev(point, 2)]) * 0.5 / (m_spaceInterval * m_spaceInterval * m_spaceInterval);
+	static double fraction{ 1.0 / 8.0 };
+	return (-variables[next(point, 3)]+ 8.0*variables[next(point, 2)] - 13.0 * variables[next(point)] 
+			+ 13.0 * variables[prev(point)] - 8.0*variables[prev(point, 2)]+ variables[prev(point, 2)])
+			* fraction / (m_spaceInterval * m_spaceInterval * m_spaceInterval);
 }
 
 int KortewegDeVries::getmaxIndex() const { return m_maxIndex; }
