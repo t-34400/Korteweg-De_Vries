@@ -106,6 +106,11 @@ std::ostream& operator<<(std::ostream& out, const VectorStorage& p)
 	return out;
 }
 
+VectorStorage::operator std::vector<double>() const
+{
+	return m_value;
+}
+
 std::size_t VectorStorage::getDimension() const { return m_value.size(); }
 const std::vector<double>& VectorStorage::getVector() const { return m_value; }
 double VectorStorage::getSquareMagnitude() const { return (*this) * (*this); }

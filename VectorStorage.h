@@ -20,6 +20,8 @@ public:
 	const double& operator[](int index) const;
 	bool operator==(const VectorStorage& p) const;
 
+	operator std::vector<double>() const;
+
 	std::size_t getDimension() const;
 	const std::vector<double>& getVector() const;
 	double getSquareMagnitude() const;
